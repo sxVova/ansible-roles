@@ -1,0 +1,15 @@
+---
+
+- hosts: gitlab
+  become: true
+  gather_facts: no
+  roles:
+    - { role:gitlab }
+
+- hosts: letsencrypt
+  become: true
+  gather_facts: no
+  roles:
+    - { role:letsencrypt }
+
+...
