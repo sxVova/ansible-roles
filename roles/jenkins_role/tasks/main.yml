@@ -19,7 +19,8 @@
   apt: upgrade=dist update_cache=yes
 
 - name: Install jenkins
-  apt: name=jenkins state=latest
+  apt: 
+    name: jenkins=2.204.2
 
 # restore part
 
