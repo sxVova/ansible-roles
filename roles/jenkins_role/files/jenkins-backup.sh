@@ -40,3 +40,4 @@ cd "$TMP_DIR"
 tar czvf "$TMP_TAR_NAME" "$ARC_NAME"/*
 cp "$TMP_DIR"/"$TMP_TAR_NAME" "$DIST_FILE"
 rm -r "$TMP_DIR"
+

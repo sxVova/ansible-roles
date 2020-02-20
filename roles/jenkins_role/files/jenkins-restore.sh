@@ -24,3 +24,4 @@ cp -a "$ARC_DIR"/* "$JENKINS_HOME"
 chown -R 1000.1000 "$JENKINS_HOME"/*
 
 rm -rf "$ARC_DIR"
+

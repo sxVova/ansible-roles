@@ -3,6 +3,6 @@ flask-ansible.sxvova.opensource-ukraine.org domain_name=flask-ansible.sxvova.ope
 sentry-ansible.sxvova.opensource-ukraine.org domain_name=sentry-ansible.sxvova.opensource-ukraine.org container_port=9000
 jenkins-ansible.sxvova.opensource-ukraine.org domain_name=jenkins-ansible.sxvova.opensource-ukraine.org container_port=8080
 [jenkins]
-jenkins.sxvova.opensource-ukraine.org
+jenkins-ansible.sxvova.opensource-ukraine.org
 [gitlab]
 gitlab-ansible-1.sxvova.opensource-ukraine.org
