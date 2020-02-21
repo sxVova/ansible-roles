@@ -1,4 +1,4 @@
-Role Name
+Letsencrypt role
 =========
 
 This role installs nginx and letsencrypt. The role automatic issuing and attaching a certificate and redirect traffic to the desired port
