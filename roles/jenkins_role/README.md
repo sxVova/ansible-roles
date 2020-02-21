@@ -14,6 +14,7 @@ Example Playbook
 ----------------
 
     - hosts: jenkins
+      become: true
       roles:
          - { role: jenkins }
 
