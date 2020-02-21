@@ -1,4 +1,4 @@
-Role Name
+Jenkins role
 =========
 
 This role installs pip and works in virtualenv. Role installs java and jenkins, downloads data from gcloud storage and makes backup.
