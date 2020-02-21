@@ -65,7 +65,6 @@
 
 - name: Give file permissions to the necessary user
   shell: chown git.git /var/opt/gitlab/backups/{{ gcloud_tar_name }}
-  warn: false
   
 - name: Stop unicorn
   shell: gitlab-ctl stop unicorn
