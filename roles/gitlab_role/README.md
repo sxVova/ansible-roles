@@ -1,4 +1,4 @@
-Role Name
+GitLab role
 =========
 
 This role installs pip and works in virtualenv. The role installs gitlab, gives an ssl certificate, downloads data from gcloud storage and makes backup.
