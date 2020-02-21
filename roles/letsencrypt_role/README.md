@@ -13,6 +13,7 @@ Example Playbook
 ----------------
 
     - hosts: letsencrypt
+      become: true
       roles:
          - { role: letsencrypt }
 
