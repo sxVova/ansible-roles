@@ -3,8 +3,23 @@
 - name: Upgrade system
   apt: upgrade=dist update_cache=yes
 
+- name: Install pip
+  apt:
+    name: python-pip
+
+-  name: Install virtualenv
+   shell: pip install virtualenv
+
+-  name: Create virtualenv and activate
+   shell: virtualenv "sxvova-venv"
+          creates="sxvova-venv/bin/activate"
+
+- name: "Install boto python package"
+  shell: pip install -U boto
+
 - name: Install curl
-  apt: name=curl state=latest
+  apt: 
+    name: curl=7.58.*
 
 - name: Install openssh-server
   apt: name=openssh-server state=latest
@@ -13,13 +28,17 @@
   apt: name=ca-certificates state=latest
 
 - name: Install postfix
-  apt: name=postfix state=latest
+  apt: 
+    name: postfix=3.3.*
 
-- name: Install python-boto
-  apt: name=python-boto state=latest
+- name: Add the GitLab package repository
+  get_url:
+    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh
+    dest: .
+    mode: '0755'
 
-- name: Add the GitLab package repository and install the package
-  shell: curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+- name: Install the GitLab package
+  shell: ./script.deb.sh
 
 - name: Install gitlab
   apt: name=gitlab-ee state=latest
@@ -31,9 +50,6 @@
   template:
     src: gitlab.rb.j2
     dest: /etc/gitlab/gitlab.rb
-
-- name: Reconfigure and restart GitLab
-  shell: gitlab-ctl reconfigure && gitlab-ctl restart
 
 - name: Download bucket content
   gc_storage:
@@ -49,7 +65,8 @@
 
 - name: Give file permissions to the necessary user
   shell: chown git.git /var/opt/gitlab/backups/{{ gcloud_tar_name }}
-
+  warn: false
+  
 - name: Stop unicorn
   shell: gitlab-ctl stop unicorn
 

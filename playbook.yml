@@ -6,16 +6,16 @@
   roles:
     - { role: gitlab_role }
 
-- hosts: jenkins
-  become: true
-  gather_facts: no
-  roles:
-    - { role: jenkins_role }
+#- hosts: jenkins
+#  become: true
+#  gather_facts: no
+#  roles:
+#    - { role: jenkins_role }
 
-- hosts: letsencrypt
-  become: true
-  gather_facts: no
-  roles:
-    - { role: letsencrypt_role }
+#- hosts: letsencrypt
+#  become: true
+#  gather_facts: no
+#  roles:
+#    - { role: letsencrypt_role }
 
 ...

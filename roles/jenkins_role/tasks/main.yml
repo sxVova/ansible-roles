@@ -1,7 +1,19 @@
----
-# tasks file for jenkins-role
 - name: Upgrade system
   apt: upgrade=dist update_cache=yes
+
+- name: Install pip
+  apt:
+    name: python-pip
+
+-  name: Install virtualenv
+   shell: pip install virtualenv
+
+-  name: Create virtualenv and activate
+   shell: virtualenv "sxvova-venv" 
+          creates="sxvova-venv/bin/activate"
+
+- name: "Install boto python package"
+  shell: pip install -U boto
 
 - name: Install jdk
   apt: name=openjdk-8-jdk state=latest
@@ -19,13 +31,10 @@
   apt: upgrade=dist update_cache=yes
 
 - name: Install jenkins
-  apt: 
+  apt:
     name: jenkins=2.204.2
 
 # restore part
-
-- name: "Install boto python package"
-  apt: name=python-boto state=latest
 
 - name: "Create backup directory"
   file: path=/tmp/backup state=directory
@@ -53,3 +62,4 @@
 
 - name: "Restart jenkins"
   service: name=jenkins state=restarted
+

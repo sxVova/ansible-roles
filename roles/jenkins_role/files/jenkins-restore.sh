@@ -11,7 +11,7 @@ readonly DIST_FILE=$2
 readonly CUR_DIR=$(cd "$(dirname "${BASH_SOURCE:-$0}")"; pwd)
 readonly ARC_DIR="$CUR_DIR/jenkins-backup"
 
-if [ -z "$JENKINS_HOME" -o -z "$DIST_FILE" ] ; then
+if [ -z "$JENKINS_HOME" ] || [ -z "$DIST_FILE" ] ; then
   usage >&2
   exit 1
 fi
