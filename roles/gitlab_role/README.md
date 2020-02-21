@@ -13,6 +13,7 @@ Example Playbook
 ----------------
 
     - hosts: gitlab
+      become: true
       roles:
          - { role: gitlab }
 
