@@ -6,14 +6,17 @@
     name: python-pip
 
 -  name: Install virtualenv
-   shell: pip install virtualenv
+   shell: pip2 install virtualenv
 
 -  name: Create virtualenv and activate
    shell: virtualenv "sxvova-venv" 
           creates="sxvova-venv/bin/activate"
 
-- name: "Install boto python package"
-  shell: pip install -U boto
+- name: Install boto python package
+  shell: pip2 install -U boto
+
+- name: Upgrade boto 
+  shell: pip2 install boto --upgrade --user
 
 - name: Install jdk
   apt: name=openjdk-8-jdk state=latest
@@ -36,30 +39,30 @@
 
 # restore part
 
-- name: "Create backup directory"
+- name: Create backup directory
   file: path=/tmp/backup state=directory
 
-- name: "Upload restore script"
+- name: Upload restore script
   copy: src=jenkins-restore.sh dest=/tmp/backup/jenkins-restore.sh mode=0755
 
-- name: "Download backup file from gcloud"
+- name: Download backup file from gcloud
   gc_storage:
-    bucket: '{{ gcloud_storage_name }}'
-    object: '{{ gcloud_tar_name }}'
-    dest: /tmp/backup/{{ gcloud_tar_name }}
+    bucket:        '{{ gcloud_storage_name }}'
+    object:        '{{ gcloud_tar_name }}'
+    dest:          /tmp/backup/{{ gcloud_tar_name }}
     gs_access_key: '{{ gcloud_storage_key }}'
     gs_secret_key: '{{ gcloud_storage_secret_key }}'
     mode: get
 
--  name: "Restore jenkins home directory"
+-  name: Restore jenkins home directory
    shell: /tmp/backup/jenkins-restore.sh /var/lib/jenkins /tmp/backup/{{ gcloud_tar_name }}
 
-- name: "Restore ownership"
+- name: Restore ownership
   shell: chown jenkins.jenkins -R /var/lib/jenkins
 
-- name: "Remove backup file"
+- name: Remove backup file
   file: path=/tmp/backup/{{ gcloud_tar_name }} state=absent
 
-- name: "Restart jenkins"
+- name: Restart jenkins
   service: name=jenkins state=restarted
 

@@ -1,10 +1,16 @@
 ---
 
-- hosts: gitlab
+- hosts: all
   become: true
   gather_facts: no
   roles:
-    - { role: gitlab_role }
+   - { role: docker_role }
+
+#- hosts: gitlab
+#  become: true
+#  gather_facts: no
+#  roles:
+#    - { role: gitlab_role }
 
 #- hosts: jenkins
 #  become: true

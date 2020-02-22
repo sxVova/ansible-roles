@@ -1,0 +1,25 @@
+---
+# tasks file for docker
+- name: Upgrade system
+  apt: upgrade=dist update_cache=yes
+
+- name: Install docker
+  apt:
+    name: docker.io
+
+- name: Start docker
+  systemd:
+    state:   started
+    name:    docker
+    enabled: yes
+
+- name: Enable docker
+  systemd:
+    name:    docker
+    enabled: yes
+
+- name: Download docker-compose
+  shell: curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+- name: Give executable permissions to the docker-compsoe binary
+  shell: chmod +x /usr/local/bin/docker-compose
