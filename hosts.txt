@@ -5,4 +5,4 @@ jenkins-ansible.sxvova.opensource-ukraine.org domain_name=jenkins-ansible.sxvova
 [jenkins]
 jenkins-ansible.sxvova.opensource-ukraine.org
 [gitlab]
-gitlab-ansible-2.sxvova.opensource-ukraine.org
+34.89.77.217 ansible_python_interpreter=/usr/bin/python

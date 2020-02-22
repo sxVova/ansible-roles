@@ -2,7 +2,7 @@
 
 ansible_user                 : rasavo99
 ansible_ssh_private_key_file : /home/rasavo99/ansible-roles/id_rsa
-gitlab_external_url          : https://gitlab-ansible-2.sxvova.opensource-ukraine.org/
+gitlab_external_url          : https://gitlab-ansible-3.sxvova.opensource-ukraine.org/
 gcloud_storage_key           : !vault |
           $ANSIBLE_VAULT;1.1;AES256
           61323135313732363466326434313235383462316139316637623263626537363635383362323932
@@ -23,6 +23,5 @@ gcloud_storage_secret_key    : !vault |
 gcloud_storage_name          : sxvova-bucket
 gcloud_bucket_name           : 1582043958_2020_02_18_12.7.6-ee
 gcloud_tar_name              : 1582043958_2020_02_18_12.7.6-ee_gitlab_backup.tar
-
 ...
 

@@ -8,14 +8,17 @@
     name: python-pip
 
 -  name: Install virtualenv
-   shell: pip install virtualenv
+   shell: pip2 install virtualenv
 
 -  name: Create virtualenv and activate
    shell: virtualenv "sxvova-venv"
           creates="sxvova-venv/bin/activate"
 
-- name: "Install boto python package"
-  shell: pip install -U boto
+- name: Install boto python package
+  shell: pip2 install -U boto
+
+- name: Upgrade boto 
+  shell: pip2 install boto --upgrade --user
 
 - name: Install curl
   apt: 
@@ -27,41 +30,48 @@
 - name: Install ca-certificates
   apt: name=ca-certificates state=latest
 
-- name: Install postfix
-  apt: 
-    name: postfix=3.3.*
+#- name: Install postfix
+#  apt: 
+#    name: postfix=3.3.*
 
-- name: Add the GitLab package repository
-  get_url:
-    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh
-    dest: .
-    mode: '0755'
+#- name: Add the GitLab package repository
+#  get_url:
+#    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh
+#    dest: .
+#    mode: '0755'
 
-- name: Install the GitLab package
-  shell: ./script.deb.sh
+#- name: Install the GitLab package
+#  shell: ./script.deb.sh
 
-- name: Install gitlab
-  apt: name=gitlab-ee state=latest
+#- name: Install gitlab
+#  apt:
+#    name: gitlab-ee=12.7.6-ee.0
 
-- name: Remove default gitlab config
-  file: name=/etc/gitlab/gitlab.rb state=absent
+#- name: Reconfigure GitLab
+#  shell: gitlab-ctl reconfigure
 
-- name: Install gitlab config
-  template:
-    src: gitlab.rb.j2
-    dest: /etc/gitlab/gitlab.rb
+#- name: Remove default gitlab config
+#  file: name=/etc/gitlab/gitlab.rb state=absent
+
+#- name: Install gitlab config
+#  template:
+#    src: gitlab.rb.j2
+#    dest: /etc/gitlab/gitlab.rb
+
+#- name: Upgrade system
+#  apt: upgrade=dist update_cache=yes
 
 - name: Download bucket content
   gc_storage:
-    bucket: '{{ gcloud_storage_name }}'
-    object: '{{ gcloud_tar_name }}'
-    dest: /home/{{ ansible_user }}/{{ gcloud_tar_name }}
+    bucket:        '{{ gcloud_storage_name }}'
+    object:        '{{ gcloud_tar_name }}'
+    dest:          /home/{{ ansible_user }}/{{ gcloud_tar_name }}
     gs_access_key: '{{ gcloud_storage_key }}'
     gs_secret_key: '{{ gcloud_storage_secret_key }}'
-    mode: get
+    mode:          get
 
 - name: Move repository backup file
-  shell: mv {{ gcloud_tar_name }} /var/opt/gitlab/backups/{{ gcloud_tar_name }}
+  shell: mv /home/{{ ansible_user }}/{{ gcloud_tar_name }} /var/opt/gitlab/backups/{{ gcloud_tar_name }}
 
 - name: Give file permissions to the necessary user
   shell: chown git.git /var/opt/gitlab/backups/{{ gcloud_tar_name }}
