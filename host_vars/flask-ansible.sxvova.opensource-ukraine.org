@@ -1,0 +1,6 @@
+---
+
+domain_name:    flask-ansible.sxvova.opensource-ukraine.org 
+container_port: 5000
+
+...

@@ -1,0 +1,6 @@
+---
+
+domain_name:    sentry-ansible.sxvova.opensource-ukraine.org 
+container_port: 9000
+
+...

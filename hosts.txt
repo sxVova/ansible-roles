@@ -1,9 +1,8 @@
 [letsencrypt]
-flask-ansible.sxvova.opensource-ukraine.org domain_name=flask-ansible.sxvova.opensource-ukraine.org container_port=5000
-sentry-ansible.sxvova.opensource-ukraine.org domain_name=sentry-ansible.sxvova.opensource-ukraine.org container_port=9000
-jenkins-ansible.sxvova.opensource-ukraine.org domain_name=jenkins-ansible.sxvova.opensource-ukraine.org container_port=8080
+flask-ansible.sxvova.opensource-ukraine.org
+sentry-ansible.sxvova.opensource-ukraine.org
+jenkins-ansible.sxvova.opensource-ukraine.org
 [jenkins]
-jenkins-ansible.sxvova.opensource-ukraine.org ansible_python_interpreter=/usr/bin/python
+jenkins-ansible.sxvova.opensource-ukraine.org
 [gitlab]
-34.89.77.217 ansible_python_interpreter=/usr/bin/python
-
+gitlab-ansible.sxvova.opensource-ukraine.org

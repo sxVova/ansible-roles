@@ -30,36 +30,36 @@
 - name: Install ca-certificates
   apt: name=ca-certificates state=latest
 
-#- name: Install postfix
-#  apt: 
-#    name: postfix=3.3.*
+- name: Install postfix
+  apt: 
+    name: postfix=3.3.*
 
-#- name: Add the GitLab package repository
-#  get_url:
-#    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh
-#    dest: .
-#    mode: '0755'
+- name: Add the GitLab package repository
+  get_url:
+    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh
+    dest: .
+    mode: '0755'
 
-#- name: Install the GitLab package
-#  shell: ./script.deb.sh
+- name: Install the GitLab package
+  shell: ./script.deb.sh
 
-#- name: Install gitlab
-#  apt:
-#    name: gitlab-ee=12.7.6-ee.0
+- name: Install gitlab
+  apt:
+    name: gitlab-ee=12.7.6-ee.0
 
-#- name: Reconfigure GitLab
-#  shell: gitlab-ctl reconfigure
+- name: Reconfigure GitLab
+  shell: gitlab-ctl reconfigure
 
-#- name: Remove default gitlab config
-#  file: name=/etc/gitlab/gitlab.rb state=absent
+- name: Remove default gitlab config
+  file: name=/etc/gitlab/gitlab.rb state=absent
 
-#- name: Install gitlab config
-#  template:
-#    src: gitlab.rb.j2
-#    dest: /etc/gitlab/gitlab.rb
+- name: Install gitlab config
+  template:
+    src: gitlab.rb.j2
+    dest: /etc/gitlab/gitlab.rb
 
-#- name: Upgrade system
-#  apt: upgrade=dist update_cache=yes
+- name: Upgrade system
+  apt: upgrade=dist update_cache=yes
 
 - name: Download bucket content
   gc_storage:
@@ -74,7 +74,10 @@
   shell: mv /home/{{ ansible_user }}/{{ gcloud_tar_name }} /var/opt/gitlab/backups/{{ gcloud_tar_name }}
 
 - name: Give file permissions to the necessary user
-  shell: chown git.git /var/opt/gitlab/backups/{{ gcloud_tar_name }}
+  file:
+    path: /var/opt/gitlab/backups/{{ gcloud_tar_name }}
+    owner: git
+    group: git 
   
 - name: Stop unicorn
   shell: gitlab-ctl stop unicorn
