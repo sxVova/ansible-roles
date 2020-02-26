@@ -9,7 +9,7 @@
 
 - name: Install nginx
   apt:
-    name=nginx=1.14.*
+    name: nginx=1.14.*
 
 - name: Install letsencrypt
   apt: 
