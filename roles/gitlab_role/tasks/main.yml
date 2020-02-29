@@ -58,9 +58,6 @@
     src: gitlab.rb.j2
     dest: /etc/gitlab/gitlab.rb
 
-- name: Upgrade system
-  apt: upgrade=dist update_cache=yes
-
 - name: Download bucket content
   gc_storage:
     bucket:        '{{ gcloud_storage_name }}'

@@ -1,8 +1,8 @@
 [letsencrypt]
-flask-ansible.sxvova.opensource-ukraine.org
-sentry-ansible.sxvova.opensource-ukraine.org
-jenkins-ansible.sxvova.opensource-ukraine.org
+tfflask.danjake.opensource-ukraine.org
+tfjenkins.danjake.opensource-ukraine.org
+tfsentry.danjake.opensource-ukraine.org
 [jenkins]
-jenkins-ansible.sxvova.opensource-ukraine.org
+tfjenkins.danjake.opensource-ukraine.org
 [gitlab]
-gitlab-ansible.sxvova.opensource-ukraine.org
+tfgitlab.danjake.opensource-ukraine.org

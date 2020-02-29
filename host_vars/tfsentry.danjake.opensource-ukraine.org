@@ -1,0 +1,6 @@
+---
+
+domain_name:    tfsentry.danjake.opensource-ukraine.org 
+container_port: 9000
+
+...
