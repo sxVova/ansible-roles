@@ -5,17 +5,16 @@ This role installs pip and works in virtualenv. The role installs gitlab, gives 
 
 Role Variables
 ----------------
-
-| Variable                                                                                                                                        | Description                                                                                                                                                                                                                                              |
-|-------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `ansible_user`                                                                                                                         | Your Ansible user name.|
-| `ansible_ssh_private_key_file`                                                                                                          | Path to ssh private key. |
-| `gitlab_external_url`                                                                                                                 | The link that is used to attach the SSL certificate. |
-| `gcloud_storage_key`                                                                                                                   | Gcloud IAM user public key(encrypted)|
-| `gcloud_storage_secret_key`                                                                                                           | Gcloud IAM user private key(encrypted) |
-| `gcloud_storage_name`                                                                                                                 | Name of Gcloud storage  |
-| `gcloud_bucket_name`                                                                                                                   | Name of Gcloud bucket in storage |
-| `gcloud_tar_name`                                                                                                                     | Backup archive name |
+| Variable                      | Description                                          |
+|-------------------------------|------------------------------------------------------|
+| `ansible_user`                | Your Ansible user name.                              |
+| `ansible_ssh_private_key_file`| Path to ssh private key.                             |
+| `gitlab_external_url`         | The link that is used to attach the SSL certificate. |
+| `gcloud_storage_key `         | Gcloud IAM user public key(encrypted).               |
+| `gcloud_storage_secret_key `  | Gcloud IAM user private key(encrypted).              |
+| `gcloud_storage_name `        | Name of Gcloud storage.                              |
+| `gcloud_bucket_name`          | Name of Gcloud bucket in storage.                    |
+| `gcloud_tar_name`             | Backup archive name.                                 |
 
 Example Playbook
 ----------------
