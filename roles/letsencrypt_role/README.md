@@ -5,12 +5,11 @@ This role installs nginx and letsencrypt. The role automatic issuing and attachi
 
 Role Variables
 --------------
-
-| Variable                                                                                                                                        | Description                                                                                                                                                                                                                                              |
-|-------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `ansible_user`                                                                                                                         | Your Ansible user name.|
-| `ansible_ssh_private_key_file`                                                                                                          | Path to ssh private key. |
-| `letsencrypt_email`                                                                                                                   | Email for attaching SSL certificate.|
+| Variable                      | Description                         |
+|-------------------------------|-------------------------------------|
+| `ansible_user`                | Your Ansible user name.             |
+| `ansible_ssh_private_key_file`| Path to ssh private key.            |
+| `letsencrypt_email`           | Email for attaching SSL certificate.|
 
 Example Playbook
 ----------------
