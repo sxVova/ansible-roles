@@ -6,8 +6,11 @@ This role installs nginx and letsencrypt. The role automatic issuing and attachi
 Role Variables
 --------------
 
-nginx.conf.j2, nginx-le.j2, nginx-http.j2 - сonfiguration files necessary for automatic issuing and attaching a certificate and redirect traffic to the desired port.
-
+| Variable                                                                                                                                        | Description                                                                                                                                                                                                                                              |
+|-------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ansible_user`                                                                                                                         | Your Ansible user name.|
+| `ansible_ssh_private_key_file`                                                                                                          | Path to ssh private key. |
+| `letsencrypt_email`                                                                                                                   | Email for attaching SSL certificate.|
 
 Example Playbook
 ----------------
@@ -15,12 +18,12 @@ Example Playbook
     - hosts: letsencrypt
       become: true
       roles:
-         - { role: letsencrypt }
+         - { role: letsencrypt_role }
 
 License
 -------
 
-BSD
+GNU General Public License v3.0
 
 Author Information
 ------------------
