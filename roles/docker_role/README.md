@@ -2,8 +2,7 @@ Docker role
 =========
 
 This role installs docker and docker-compose.
-
-
+                                                                                                                   
 Example Playbook
 ----------------
 
@@ -15,7 +14,7 @@ Example Playbook
 License
 -------
 
-BSD
+GNU General Public License v3.0
 
 Author Information
 ------------------
