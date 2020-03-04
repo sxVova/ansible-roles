@@ -38,14 +38,14 @@
     name: jenkins=2.204.2
 
 - name: Add ansible repository
-  shell: sudo apt-add-repository ppa:ansible/ansible
+  shell: sudo apt-add-repository --update ppa:ansible/ansible -y
 
 - name: Update system
   apt: update_cache=yes
 
-- name: Install pip
+- name: Install ansible
   apt:
-    name: ansible=2.9
+    name: ansible
 
 - name: Install libxmlsec1-dev
   apt:
@@ -81,9 +81,6 @@
 
 - name: Install setuptools
   shell: pip install setuptools
-
--  name: Virtualenv deactivate
-   shell: deactivate
 
 - name: Install jenkins cli
   shell: wget http://35.239.147.40:8080/jnlpJars/jenkins-cli.jar
