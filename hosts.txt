@@ -1,6 +1,6 @@
 [letsencrypt]
-tfflask.danjake.opensource-ukraine.org
-tfjenkins.danjake.opensource-ukraine.org
+#tfflask.danjake.opensource-ukraine.org
+#tfjenkins.danjake.opensource-ukraine.org
 tfsentry.danjake.opensource-ukraine.org
 [jenkins]
 tfjenkins.danjake.opensource-ukraine.org

@@ -1,8 +1,8 @@
 ---
 # tasks file for letsencrypt
 
-- name: Upgrade system
-  apt: upgrade=dist update_cache=yes
+- name: Update system
+  apt: update_cache=yes
 
 - name: Install python-simplejson
   apt: name=python-simplejson state=latest
