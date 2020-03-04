@@ -58,23 +58,23 @@
     src: gitlab.rb.j2
     dest: /etc/gitlab/gitlab.rb
 
-- name: Download bucket content
-  gc_storage:
-    bucket:        '{{ gcloud_storage_name }}'
-    object:        '{{ gcloud_tar_name }}'
-    dest:          /home/{{ ansible_user }}/{{ gcloud_tar_name }}
-    gs_access_key: '{{ gcloud_storage_key }}'
-    gs_secret_key: '{{ gcloud_storage_secret_key }}'
-    mode:          get
+#- name: Download bucket content
+ # gc_storage:
+  #  bucket:        '{{ gcloud_storage_name }}'
+   # object:        '{{ gcloud_tar_name }}'
+    #dest:          /home/{{ ansible_user }}/{{ gcloud_tar_name }}
+    #gs_access_key: '{{ gcloud_storage_key }}'
+    #gs_secret_key: '{{ gcloud_storage_secret_key }}'
+    #mode:          get
 
-- name: Move repository backup file
-  shell: mv /home/{{ ansible_user }}/{{ gcloud_tar_name }} /var/opt/gitlab/backups/{{ gcloud_tar_name }}
+#- name: Move repository backup file
+ # shell: mv /home/{{ ansible_user }}/{{ gcloud_tar_name }} /var/opt/gitlab/backups/{{ gcloud_tar_name }}
 
-- name: Give file permissions to the necessary user
-  file:
-    path: /var/opt/gitlab/backups/{{ gcloud_tar_name }}
-    owner: git
-    group: git 
+#- name: Give file permissions to the necessary user
+ # file:
+  #  path: /var/opt/gitlab/backups/{{ gcloud_tar_name }}
+   # owner: git
+    #group: git 
   
 - name: Stop unicorn
   shell: gitlab-ctl stop unicorn
@@ -85,8 +85,8 @@
 - name: Stop sidekiq
   shell: gitlab-ctl stop sidekiq
 
-- name: Make backup restore
-  shell: gitlab-backup restore BACKUP='{{ gcloud_bucket_name }}' force=yes
+#- name: Make backup restore
+ # shell: gitlab-backup restore BACKUP='{{ gcloud_bucket_name }}' force=yes
 
 - name: Reconfigure and restart GitLab
   shell: gitlab-ctl reconfigure && gitlab-ctl restart
