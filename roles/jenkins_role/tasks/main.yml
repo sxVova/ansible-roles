@@ -38,7 +38,7 @@
     name: jenkins=2.204.2
 
 - name: Add ansible repository
-  apt-repository: 
+  apt_repository: 
     repo: ppa:ansible/ansible
 
 - name: Update system
@@ -67,8 +67,10 @@
 
 - name: Install jenkins cli
   get_url: 
-    url: http://jenkins-ansible.sxvova.opensource-ukraine.org:8080/jnlpJars/jenkins-cli.jar
+    url: https://{{ domain_name }}/jnlpJars/jenkins-cli.jar
     dest: /
+    owner: jenkins
+    group: jenkins
 
 - name: Add jenkins user to docker group
   user:
@@ -101,8 +103,49 @@
 - name: Restore ownership
   shell: chown jenkins.jenkins -R /var/lib/jenkins
 
+- name: Create directory for auto scripts
+  file: 
+    path: /var/lib/jenkins/init.groovy.d
+    state: directory
+    owner: jenkins
+    group: jenkins
+  
+#- name: Copy templete to install plugins
+ # template:
+  #  src: 00-install-plugins.groovy.j2
+   # dest: /var/lib/jenkins/init.groovy.d/00-install-plugins.groovy
+    #owner: jenkins
+    #group: jenkins
+
+- name: Copy templete to start sentry pipeline
+  template:
+    src: 01-run.groovy.j2
+    dest: /var/lib/jenkins/init.groovy.d/01-run.groovy
+    owner: jenkins
+    group: jenkins
+
+- name: Copy templete to start flask pipeline
+  template:
+    src: 02-run.groovy.j2
+    dest: /var/lib/jenkins/init.groovy.d/02-run.groovy
+    owner: jenkins
+    group: jenkins
+
 - name: Remove backup file
   file: path=/tmp/backup/{{ gcloud_tar_name }} state=absent
+
+- name: Remove nginx config
+  file:
+    path: /etc/nginx/sites-enabled/*
+    state: absent
+
+- name: Add new nginx config file with proxy
+  template: 
+    src: nginx-le.j2
+    dest: /etc/nginx/sites-enabled/le
+
+- name: Reload nginx
+  service: name=nginx state=restarted
 
 - name: Restart jenkins
   service: name=jenkins state=restarted

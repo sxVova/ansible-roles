@@ -1,0 +1,7 @@
+---
+  plugins:
+    - github-pullrequest
+    - google-login
+    - workflow-aggregator
+    - htmlpublisher
+...
