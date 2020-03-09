@@ -28,6 +28,7 @@ mkdir -p "$ARC_DIR"/{plugins,jobs,users}
 cp "$JENKINS_HOME"/*.xml "$ARC_DIR"
 cp "$JENKINS_HOME"/plugins/*.jpi "$ARC_DIR"/plugins
 cp -R "$JENKINS_HOME"/users/* "$ARC_DIR"/users
+cp "$JENKINS_HOME"/init.groovy.d/* "$ARC_DIR"/init.groovy.d
 
 cd "$JENKINS_HOME"/jobs/
 ls -1 | while read job_name
