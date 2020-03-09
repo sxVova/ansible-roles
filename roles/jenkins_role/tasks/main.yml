@@ -38,42 +38,25 @@
     name: jenkins=2.204.2
 
 - name: Add ansible repository
-  shell: sudo apt-add-repository ppa:ansible/ansible
+  apt-repository: 
+    repo: ppa:ansible/ansible
 
 - name: Update system
   apt: update_cache=yes
 
-- name: Install pip
+- name: Install ansible
   apt:
-    name: ansible=2.9
+    name: ansible
 
-- name: Install libxmlsec1-dev
+- name: Install packages for tests
   apt:
-    name: libxmlsec1-dev
-
-- name: Install pkg-config
-  apt:
-    name: pkg-config
-
-- name: Install virtualenv
-  apt:
-    name: virtualenv
-
-- name: Install memcached
-  apt:
-    name: memcached 
-
-- name: Install redis-server
-  apt:
-    name: redis-server
-
-- name: Install postgresql
-  apt:
-    name: postgresql
-
-- name: Install unzip
-  apt:
-    name: unzip
+    pkg:
+    - libxmlsec1-dev
+    - pkg-config
+    - memcached
+    - redis-server
+    - postgresql
+    - unzip
 
 -  name: Create virtualenv and activate
    shell: virtualenv --no-setuptools foo
@@ -82,14 +65,15 @@
 - name: Install setuptools
   shell: pip install setuptools
 
--  name: Virtualenv deactivate
-   shell: deactivate
-
 - name: Install jenkins cli
-  shell: wget http://35.239.147.40:8080/jnlpJars/jenkins-cli.jar
-  
-- name: Move jenkins cli
-  shell: mv jenkins-cli.jar /
+  get_url: 
+    url: http://jenkins-ansible.sxvova.opensource-ukraine.org:8080/jnlpJars/jenkins-cli.jar
+    dest: /
+
+- name: Add jenkins user to docker group
+  user:
+    name: jenkins
+    group: docker
 
 # restore part
 
@@ -97,7 +81,10 @@
   file: path=/tmp/backup state=directory
 
 - name: Upload restore script
-  copy: src=jenkins-restore.sh dest=/tmp/backup/jenkins-restore.sh mode=0755
+  copy: 
+    src=jenkins-restore.sh 
+    dest=/tmp/backup/jenkins-restore.sh 
+    mode=0755
 
 - name: Download backup file from gcloud
   gc_storage:
