@@ -21,7 +21,6 @@ gcloud_storage_secret_key    : !vault |
           32313866373766633234333035393839303439313561653862353836373634656131356639663037
           3061383738643135633735326134623130333136666434613039
 gcloud_storage_name          : sxvova-bucket
-gcloud_bucket_name           : 1582043958_2020_02_18_12.7.6-ee
-gcloud_tar_name              : 1582043958_2020_02_18_12.7.6-ee_gitlab_backup.tar
+gcloud_bucket_name           : 1583340731_2020_03_04_12.7.6-ee
+gcloud_tar_name              : 1583340731_2020_03_04_12.7.6-ee_gitlab_backup.tar
 ...
-
