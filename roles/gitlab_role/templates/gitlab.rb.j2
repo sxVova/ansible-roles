@@ -547,12 +547,12 @@ gitlab_rails['backup_upload_connection'] = {
 ###! Docs: https://docs.gitlab.com/omnibus/settings/redis.html
 
 #### Redis TCP connection
-# gitlab_rails['redis_host'] = "127.0.0.1"
-# gitlab_rails['redis_port'] = 6379
-# gitlab_rails['redis_ssl'] = false
-# gitlab_rails['redis_password'] = nil
-# gitlab_rails['redis_database'] = 0
-# gitlab_rails['redis_enable_client'] = true
+ gitlab_rails['redis_host'] = "127.0.0.1"
+ gitlab_rails['redis_port'] = 6379
+ gitlab_rails['redis_ssl'] = false
+ gitlab_rails['redis_password'] = nil
+ gitlab_rails['redis_database'] = 0
+ gitlab_rails['redis_enable_client'] = true
 
 #### Redis local UNIX socket (will be disabled if TCP method is used)
 # gitlab_rails['redis_socket'] = "/var/opt/gitlab/redis/redis.socket"
@@ -602,13 +602,13 @@ gitlab_rails['backup_upload_connection'] = {
 ##! Docs: https://docs.gitlab.com/ee/administration/container_registry.html
 ################################################################################
 
-registry_external_url 'https://tfgitlab.danjake.opensource-ukraine.org:5050'
-
+#registry_external_url 'https://tfgitlab.danjake.opensource-ukraine.org:5050'
+registry_external_url 'https://registry.tfgitlab.danjake.opensource-ukraine.org'
 ### Settings used by GitLab application
-# gitlab_rails['registry_enabled'] = true
-# gitlab_rails['registry_host'] = "registry.tfgitlab.danjake.opensource-ukraine.org"
-# gitlab_rails['registry_port'] = "127.0.0.1:5005"
-# gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
+ gitlab_rails['registry_enabled'] = true
+ gitlab_rails['registry_host'] = "registry.tfgitlab.danjake.opensource-ukraine.org"
+ gitlab_rails['registry_port'] = "127.0.0.1:5005"
+ gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 
 # Notification secret, it's used to authenticate notification requests to GitLab application
 # You only need to change this when you use external Registry service, otherwise
@@ -1028,8 +1028,8 @@ registry_external_url 'https://tfgitlab.danjake.opensource-ukraine.org:5050'
 # redis_slave_role['enable'] = true
 
 ### Redis TCP support (will disable UNIX socket transport)
-# redis['bind'] = '0.0.0.0' # or specify an IP to bind to a single one
-# redis['port'] = 6379
+ redis['bind'] = '0.0.0.0' # or specify an IP to bind to a single one
+ redis['port'] = 6379
 # redis['password'] = 'redis-password-goes-here'
 
 ### Redis Sentinel support
