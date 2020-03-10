@@ -4,7 +4,7 @@
   become: true
   gather_facts: no
   roles:
-#   - { role: docker_role }
+   - { role: docker_role }
 
 - hosts: gitlab
   become: true
@@ -16,12 +16,12 @@
   become: true
   gather_facts: no
   roles:
- #   - { role: letsencrypt_role }
+    - { role: letsencrypt_role }
 
 - hosts: jenkins
   become: true
   gather_facts: no
   roles:
- #   - { role: jenkins_role }
+    - { role: jenkins_role }
 
 ...
