@@ -22,6 +22,7 @@
   become: true
   gather_facts: no
   roles:
+    - { role: jenkins_k8s_role }
     - { role: jenkins_role }
 
 ...
