@@ -6,6 +6,10 @@
 - name: Update system
   apt: update_cache=yes
 
+- name: Install pip
+  apt:
+    name: python-pip
+
 - name: Apt-transport-https install
   apt:
     pkg:
@@ -40,4 +44,18 @@
     dest: /checkstyle-8.30-all.jar
     owner: jenkins
     group: jenkins
+
+- name: Unzip go.tar
+  unarchive: 
+    src: https://dl.google.com/go/go1.11.linux-amd64.tar.gz
+    dest: /usr/local
+    owner: jenkins
+    group: jenkins
+    extra_opts:
+    - -xvf
+
+- name: Install flake8
+  pip: 
+    name: flake8 
+    
 ...
