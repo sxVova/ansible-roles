@@ -60,5 +60,14 @@
 - name: Install flake8
   pip: 
     name: flake8 
-    
+
+- name: Enable the NodeSource repository
+  shell: curl -sL https://deb.nodesource.com/setup_10.x | bash
+
+- name: Install Node.js
+  apt:
+    name: nodejs
+
+- name: Install linter for node.js
+  shell: npm i -g eslint    
 ...
